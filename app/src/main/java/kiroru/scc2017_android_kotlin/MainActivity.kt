@@ -35,14 +35,12 @@ class MainActivity : AppCompatActivity() {
         lv.adapter = MyAdapter(this, items)
     }
 
-    class MyAdapter(val context: Context, val items:MutableList<Item>) :
-            BaseAdapter() {
+    class MyAdapter(val context: Context, val items:MutableList<Item>) : BaseAdapter() {
 
         var holder:ViewHolder? = null
         val inflater: LayoutInflater = (context as Activity).layoutInflater
 
-        override fun getView(position: Int,
-                             convertView: View?, parent: ViewGroup?): View {
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             var view:View
             if (convertView == null) {
                 view = inflater.inflate(R.layout.cell_main, null)
