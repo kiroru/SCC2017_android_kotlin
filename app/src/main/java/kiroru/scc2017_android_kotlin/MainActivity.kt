@@ -2,6 +2,7 @@ package kiroru.scc2017_android_kotlin
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -33,6 +34,15 @@ class MainActivity : AppCompatActivity() {
 
         val lv = findViewById(R.id.listView) as ListView
         lv.adapter = MyAdapter(this, items)
+
+        lv.setOnItemClickListener { parent, view, position, id ->
+            val item = items[position]
+            val i = Intent(this, DetailActivity::class.java)
+            i.putExtra("imageUrl", item.imageUrl)
+            i.putExtra("jname", item.jname)
+            i.putExtra("ename", item.ename)
+            startActivity(i)
+        }
     }
 
     class MyAdapter(val context: Context, val items:MutableList<Item>) : BaseAdapter() {
@@ -47,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 holder = ViewHolder(
                         view.findViewById(R.id.imageView) as ImageView,
                         view.findViewById(R.id.textView1) as TextView,
-                        view.findViewById(R.id.textView2) as TextView)
+                        view.findViewById(R.id.textView1) as TextView)
                 view.tag = holder
             } else {
                 view = convertView!!
